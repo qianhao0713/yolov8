@@ -22,10 +22,10 @@ class MinimalSubscriber(Node):
     def __init__(self):
         super().__init__('minimal_subscriber')
         self.subscription = self.create_subscription(
-            # CompressedImage,
-            # '/image2/compressed',
-            Image,
-            '/hik03/forwardright/image_raw',
+            CompressedImage,
+            '/image2/compressed',
+            # Image,
+            # '/hik03/forwardright/image_raw',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
@@ -40,8 +40,8 @@ class MinimalSubscriber(Node):
         self.get_logger().info(f'load model completed !')
 
     def listener_callback(self, msg):
-        # current_frame = self.bridge.compressed_imgmsg_to_cv2(msg)
-        current_frame = self.bridge.imgmsg_to_cv2(msg);
+        current_frame = self.bridge.compressed_imgmsg_to_cv2(msg)
+        # current_frame = self.bridge.imgmsg_to_cv2(msg);
         self.get_logger().info(f'get image : {current_frame.shape}')
         start_time = time.time()
 
